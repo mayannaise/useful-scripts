@@ -15,7 +15,7 @@ sqlite3 "$db_file" "select ZFILENAME,ZUUID from ZASSET where ZFAVORITE==1" > "$f
 echo "Found $(wc -l < $favs_file) favourite photos"
 
 # now find those photos on the phone and copy them off
-while IFS="," read -r filename uuid
+while IFS="|" read -r filename uuid
 do
 	echo "Searching for $filename"
 	find "$mount_dir/DCIM" -type f -name "$filename" -exec cp "{}" "$dest_dir" \;
